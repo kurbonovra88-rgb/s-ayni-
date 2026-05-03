@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="tg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Садриддин Айнӣ </title>
+<head>
+<style>
+     /* Иконкаи меню (3 хатча) */
+    .menu-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 101;
+}
+.menu-icon span {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+nav {
+    position: fixed;
+    top: 0px; /* Ба поёнтар аз сарлавҳа */
+    right: -100%; /* Дар аввал пинҳон аст */
+    width: 150px;
+    height: 50vh;
+    background: rgba(28, 38, 66, 0.98);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    z-index: 100;
+}
+/* Вақте ки меню кушода мешавад */
+nav.active {
+    right: 0%; /* Ба ҷои 0, барои ҷой барои тугма */
+
+}
+/* Эффект барои тугма ҳангоми кушода будан (X мешавад) */
+.menu-icon.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+.menu-icon.open span:nth-child(2) {
+    opacity: 0;
+}
+.menu-icon.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -7px);
+}
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0a0f1c;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Animated background */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, #00e0ff33, transparent),
+                radial-gradient(circle at 70% 70%, #ff00cc33, transparent);
+    animation: moveBg 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveBg {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-50px, -50px); }
+    100% { transform: translate(0,0); }
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(15px);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    position: relative;
+    margin: 20px 10px !important;
+    font-size: 20px;
+    display: block;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #00e0ff;
+    bottom: -5px;
+    left: 0;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.hero h1 {
+    font-size: 75px;
+    background: linear-gradient(90deg, #00e0ff, #b562a4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    opacity: 0.7;
+    font-size: 25px;
+}
+
+.image-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.image-section img {
+    width: 280px;
+    border-radius: 20px;
+    transition: 0.5s;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.image-section img:hover {
+    transform: translateY(-15px) scale(1.05);
+}
+
+.timeline {
+    margin-top: 80px;
+    border-left: 2px solid #00e0ff;
+    padding-left: 20px;
+}
+
+.timeline-item {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    background: #00e0ff;
+    border-radius: 50%;
+}
+
+.card-grid {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    background: rgba(255,255,255,0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    background: rgba(0,0,0,0.6);
+}
+.poetry {
+    margin-top: 80px;
+    text-align: center;
+}
+.poetry-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.poetry h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #00e0ff, #ff00cc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.poem-card {
+    width: 45%;
+    margin: 0;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+/* hover эффект */
+.poem-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255,255,255,0.1);
+}
+
+/* неоновый эффект */
+.poem-card::before {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: linear-gradient(120deg, transparent, #00e0ff44, transparent);
+    transform: rotate(25deg);
+    top: -50%;
+    left: -50%;
+    transition: 0.6s;
+}
+
+.poem-card:hover::before {
+    top: 100%;
+    left: 100%;
+}
+
+.poem-card p {
+    font-size: 20px;
+    line-height: 1.7;
+    color: #ffffffcc;
+}
+
+/* анимация ҳангоми пайдо шудан */
+.poem-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s forwards;
+}
+
+.poem-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.poem-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+<body>
+<header>
+    <h2>Сомонаи омузишии С.Айнӣ</h2>
+    
+    <div class="menu-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav id="nav-menu">
+        <a href="asarho.html" onclick="toggleMenu()">Асарҳо</a>
+        <a href="videoho.html" onclick="toggleMenu()">Видеоҳо</a>
+    </nav>
+</header>
+
+<div class="container">
+    <section class="hero">
+        <h1>Садриддин Айнӣ</h1>
+        <p>Асосгузори адабиёти муосири тоҷик</p>
+    </section>
+
+    <section class="image-section">
+        <img src="suratho/images2123.webp">
+        <img src="suratho/AyniSadriddin.jpg">
+    </section>
+    <p>
+        Садриддин Айнӣ (1878–1954) — асосгузори адабиёти муосири тоҷик ва 
+        яке аз бузургтарин нависандагони миллат мебошад. Ӯ дар Бухоро ба дунё омада, 
+        тамоми ҳаёташро ба рушди илму адаб бахшидааст.
+        
+        Айнӣ бо асарҳои худ зидди ҷаҳолат ва беадолатӣ мубориза бурда, 
+        мардумро ба дониш, маърифат ва худшиносӣ даъват мекард. 
+        Осори ӯ то имрӯз аҳамияти бузурги фарҳангӣ дорад.
+    </p>
+<section class="poetry">
+    <h2>Аз эҷодиёт</h2>
+    <div class="poetry-cards">
+        <div class="poem-card left">
+            <p>           	
+                 Биёед, эй рафиқон, дарс хонем,<br>
+                 Ба бекорию нодонӣ намонем,<br>
+                 Ба олам ҳар касе бекор гардад,<br>
+                 Ба чашми аҳли олам хор гардад.
+            </p>
+        </div> 
+        <div class="poem-card right">
+            <p>
+                Дил ба дилдор асту ман афтода аз дилдор дур,<br>
+                Фаррух он рӯзе, ки ҳам дилдору ҳам дил доштам,<br>
+                Мекушад ин ҳасратам охир, ки боре ӯ нагуфт,<br>
+                Айнии маҳҷур,яъне зору бедил доштам. 
+            </p>
+        </div>
+
+    </div>
+</section>
+</body>
+<script>
+
+function toggleMenu() {
+    const nav = document.getElementById('nav-menu');
+    const icon = document.querySelector('.menu-icon');
+    
+    nav.classList.toggle('active'); // Менюро мекушояд/мепӯшад
+    icon.classList.toggle('open');  // Тугмаро ба "X" табдил медиҳад
+
+}
+</script>
+</html>
